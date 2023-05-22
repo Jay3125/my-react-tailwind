@@ -6,6 +6,7 @@ interface Props {
   id?: any;
   active?: string | number | undefined;
   onClick?: () => void;
+  isOpen?:boolean
 }
 
 const Accordion = (props: Props) => (

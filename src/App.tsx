@@ -1,9 +1,29 @@
 // import { useState } from "react";
 import { useState } from "react";
 import "./App.css";
-import {  HUIAccordion } from "./components/pages";
+// import Accordion from "./components/Accordion";
+// import CollapseDemo from "./components/CollapseDemo";
+// import LeftOffcanvas from "./components/LeftOffcanvas";
+// import RightOffcanvas from "./components/RightOffcanvas";
+// import TopOffcanvas from "./components/TopOffcanvas";
+// import Example from "./components/collapse";
+// import Collapse from "./components/collapse";
+// // import OffCanvas from "./components/modal";
+// import Menu from "./components/menu";
+// import Modal from "./components/modal";
+// import TopMenu from "./components/topsmenu";
+import { HUIAccordion } from "./components/pages";
 import React from "react";
 function App() {
+  // let [ setIsOpen] = useState(true);
+
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
+
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
   const faqs = [
     {
       id: 1,
@@ -26,7 +46,7 @@ function App() {
       text: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.`,
     },
   ];
-const [activePanelId, setActivePanelId] = useState(null)
+const [activePanelId, setActivePanelId] = useState()
 
  const handlePanelToggle = (panelId:any) => {
    setActivePanelId((prevActivePanelId) =>
@@ -34,13 +54,43 @@ const [activePanelId, setActivePanelId] = useState(null)
    );
   };
   
+   const disclosureItems = [
+    {
+      id: "1",
+      header: "Item 1",
+      content: <p>Content for Item 1</p>,
+    },
+    {
+      id: "2",
+      header: "Item 2",
+      content: <p>Content for Item 2</p>,
+    },
+    {
+      id: "3",
+      header: "Item 3",
+      content: <p>Content for Item 3</p>,
+    },
+  ];
 
   return (
     <div className="App">
       <h1 className="text-2xl text-blue-900 pt-10 font-extrabold">
         Hello Tailwind
       </h1>
-
+      {/* <HUIAccordion>
+        {faqs.map(faq => {
+          return (
+            <>
+              <HUIAccordion.Button key={faq.id} onClick={() => handlePanelToggle(faq.id)}>
+                {faq.header}
+              </HUIAccordion.Button>
+              <HUIAccordion.Panel id={faq.id} active={activePanelId === faq.id ? faq.id : undefined}>
+                {faq.text}
+              </HUIAccordion.Panel>
+            </>
+          )
+        })}
+      </HUIAccordion> */}
       <HUIAccordion>
         {faqs.map((faq) => (
           <React.Fragment key={faq.id}>
@@ -56,6 +106,7 @@ const [activePanelId, setActivePanelId] = useState(null)
           </React.Fragment>
         ))}
       </HUIAccordion>
+ 
     </div>
   );
 }
