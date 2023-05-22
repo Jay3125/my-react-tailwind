@@ -1,0 +1,54 @@
+import { MouseEventHandler, ReactNode, useState } from "react";
+
+interface Props {
+  children?: ReactNode;
+  className?: string;
+
+  isCollapsed: boolean;
+  handleCollapse: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: () => void;
+}
+
+function Collapse(props: Props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  return (
+    <>
+      {/* <button
+        className={` ${props.className} ${
+          props.isCollapsed ? "" : "bg-primary-700"
+        }`}
+        type="button"
+        onClick={props.handleCollapse}
+        aria-expanded={!props.isCollapsed}
+        aria-controls="collapseExample"
+      >
+        {props.children}
+      </button>
+      <div
+        className={` ${props.className} ${props.isCollapsed ? "hidden" : ""}`}
+        id="collapseExample"
+      >
+        {props.children}
+      </div> */}
+      <button className="py-2 px-2 bg-sky-500" onClick={toggleMenu}>{props.children}</button>
+      <div className={`${isOpen ? 'hidden' : 'block'} fixed top-0 right-0 w-full h-full bg-black opacity-50 z-40`} onClick={toggleMenu}></div>
+      {/* <div className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} fixed top-0 right-0 w-64 h-full bg-white z-50 transition duration-300 ease-in-out transform`} > */}
+      <div className={`${isOpen ? 'translate-x-full' : 'translate-x-0'} fixed top-0 right-0 w-64 h-full bg-white z-50 transition duration-300 ease-in-out transform`} >
+        <div className="flex justify-end px-4 py-2">
+          <button onClick={toggleMenu} className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="Close menu">
+            <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.2929 5.29289C18.6834 4.90237 19.3166 4.90237 19.7071 5.29289C20.0976 5.68342 20.0976 6.31658 19.7071 6.70711L13.4142 13L19.7071 19.2929C20.0976 19.6834 20.0976 20.3166 19.7071 20.7071C19.3166 21.0976 18.6834 21.0976 18.2929 20.7071L12 14.4142L5.70711 20.7071C5.31658 21.0976 4.68342 21.0976 4.29289 20.7071C3.90237 20.3166 3.90237 19.6834 4.29289 19.2929L10.5858 13L4.29289 6.70711C3.90237 6.31658 3.90237 5.68342 4.29289 5.29289C4.68342 4.90237 5.31658 4.90237 5.70711 5.29289L12 11.5858L18.2929 5.29289Z"/>
+            </svg>
+          </button>
+        </div>
+        {props.children}
+      </div>
+    </>
+  );
+}
+export default Collapse;
+
