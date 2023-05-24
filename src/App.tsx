@@ -12,8 +12,10 @@ import "./App.css";
 // import Menu from "./components/menu";
 // import Modal from "./components/modal";
 // import TopMenu from "./components/topsmenu";
-import { HUIAccordion } from "./components/pages";
+import { HUIAccordion, HUISwiper } from "./components/pages";
 import React from "react";
+import Modal from "./components/modal";
+import SwiperComponent from "./components/pages/swiper";
 function App() {
   // let [ setIsOpen] = useState(true);
 
@@ -46,67 +48,29 @@ function App() {
       text: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.`,
     },
   ];
-const [activePanelId, setActivePanelId] = useState()
+  const [activePanelId, setActivePanelId] = useState();
 
- const handlePanelToggle = (panelId:any) => {
-   setActivePanelId((prevActivePanelId) =>
-     prevActivePanelId === panelId ? null : panelId
-   );
+  const handlePanelToggle = (panelId: any) => {
+    setActivePanelId((prevActivePanelId) =>
+      prevActivePanelId === panelId ? null : panelId
+    );
   };
-  
-   const disclosureItems = [
-    {
-      id: "1",
-      header: "Item 1",
-      content: <p>Content for Item 1</p>,
-    },
-    {
-      id: "2",
-      header: "Item 2",
-      content: <p>Content for Item 2</p>,
-    },
-    {
-      id: "3",
-      header: "Item 3",
-      content: <p>Content for Item 3</p>,
-    },
-  ];
 
   return (
     <div className="App">
       <h1 className="text-2xl text-blue-900 pt-10 font-extrabold">
         Hello Tailwind
       </h1>
-      {/* <HUIAccordion>
-        {faqs.map(faq => {
-          return (
-            <>
-              <HUIAccordion.Button key={faq.id} onClick={() => handlePanelToggle(faq.id)}>
-                {faq.header}
-              </HUIAccordion.Button>
-              <HUIAccordion.Panel id={faq.id} active={activePanelId === faq.id ? faq.id : undefined}>
-                {faq.text}
-              </HUIAccordion.Panel>
-            </>
-          )
-        })}
-      </HUIAccordion> */}
-      <HUIAccordion>
-        {faqs.map((faq) => (
-          <React.Fragment key={faq.id}>
-            <HUIAccordion.Button onClick={() => handlePanelToggle(faq.id)}>
-              {faq.header}
-            </HUIAccordion.Button>
-            <HUIAccordion.Panel
-              id={faq.id}
-              active={activePanelId === faq.id ? faq.id : undefined}
-            >
-              {faq.text}
-            </HUIAccordion.Panel>
-          </React.Fragment>
-        ))}
-      </HUIAccordion>
- 
+   
+      {/* <HUISwiper>
+        <HUISwiper.Slides>Slides 1</HUISwiper.Slides>
+        <HUISwiper.Slides>Slides 2</HUISwiper.Slides>
+      </HUISwiper> */}
+      <SwiperComponent>
+      <SwiperComponent.Slides>Slide 1</SwiperComponent.Slides>
+      <SwiperComponent.Slides>Slide 2</SwiperComponent.Slides>
+      <SwiperComponent.Slides>Slide 3</SwiperComponent.Slides>
+    </SwiperComponent>
     </div>
   );
 }
