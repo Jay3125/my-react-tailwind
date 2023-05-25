@@ -1,7 +1,10 @@
 // import { useState } from "react";
+// import { useState } from "react";
 import { useState } from "react";
 import "./App.css";
-// import Accordion from "./components/Accordion";
+import Accordion from "./components/Accordion";
+import { HUIPopover } from "./components/pages";
+import { usePopper } from "react-popper";
 // import CollapseDemo from "./components/CollapseDemo";
 // import LeftOffcanvas from "./components/LeftOffcanvas";
 // import RightOffcanvas from "./components/RightOffcanvas";
@@ -12,10 +15,10 @@ import "./App.css";
 // import Menu from "./components/menu";
 // import Modal from "./components/modal";
 // import TopMenu from "./components/topsmenu";
-import { HUIAccordion, HUISwiper } from "./components/pages";
-import React from "react";
-import Modal from "./components/modal";
-import SwiperComponent from "./components/pages/swiper";
+// import { HUIAccordion, HUISwiper } from "./components/pages";
+// import React from "react";
+// import Modal from "./components/modal";
+// import SwiperComponent from "./components/pages/swiper";
 function App() {
   // let [ setIsOpen] = useState(true);
 
@@ -26,51 +29,67 @@ function App() {
   // function openModal() {
   //   setIsOpen(true);
   // }
-  const faqs = [
-    {
-      id: 1,
-      header: "What is Lorem Ipsum?",
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
-    },
-    {
-      id: 2,
-      header: "Where does it come from?",
-      text: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. `,
-    },
-    {
-      id: 3,
-      header: "Why do we use it?",
-      text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,`,
-    },
-    {
-      id: 4,
-      header: "Where can I get some?",
-      text: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.`,
-    },
-  ];
-  const [activePanelId, setActivePanelId] = useState();
+  // const faqs = [
+  //   {
+  //     id: 1,
+  //     header: "What is Lorem Ipsum?",
+  //     text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
+  //   },
+  //   {
+  //     id: 2,
+  //     header: "Where does it come from?",
+  //     text: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. `,
+  //   },
+  //   {
+  //     id: 3,
+  //     header: "Why do we use it?",
+  //     text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,`,
+  //   },
+  //   {
+  //     id: 4,
+  //     header: "Where can I get some?",
+  //     text: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.`,
+  //   },
+  // ];
+  // const [activePanelId, setActivePanelId] = useState();
 
-  const handlePanelToggle = (panelId: any) => {
-    setActivePanelId((prevActivePanelId) =>
-      prevActivePanelId === panelId ? null : panelId
-    );
-  };
+  // const handlePanelToggle = (panelId: any) => {
+  //   setActivePanelId((prevActivePanelId) =>
+  //     prevActivePanelId === panelId ? null : panelId
+  //   );
+  // };
+  const [referenceElement, setReferenceElement] = useState(null);
+  const [popperElement, setPopperElement] = useState(null);
+  const [arrowElement, setArrowElement] = useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+  });
 
   return (
     <div className="App">
       <h1 className="text-2xl text-blue-900 pt-10 font-extrabold">
         Hello Tailwind
       </h1>
-   
-      {/* <HUISwiper>
-        <HUISwiper.Slides>Slides 1</HUISwiper.Slides>
-        <HUISwiper.Slides>Slides 2</HUISwiper.Slides>
-      </HUISwiper> */}
-      <SwiperComponent>
-      <SwiperComponent.Slides>Slide 1</SwiperComponent.Slides>
-      <SwiperComponent.Slides>Slide 2</SwiperComponent.Slides>
-      <SwiperComponent.Slides>Slide 3</SwiperComponent.Slides>
-    </SwiperComponent>
+
+      <div className="flex justify-center">
+        <Accordion />
+        <div className="top-16 w-full max-w-sm px-4">
+        <HUIPopover className="relative">
+                <HUIPopover.Button ref={setReferenceElement} className="px-3 py-2 bg-danger-500 border border-danger-500 text-white rounded focus:border-danger-500">
+                  {" "}
+                  Click To Toggle Popover
+                </HUIPopover.Button>
+                <HUIPopover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}
+              className="left-1/2 z-10 mt-3 w-auto max-w-sm -translate-x-1/2 transform px-4 sm:px-0 " placement="top">
+                  <p className="bg-gray-300 px-2 py-2">Popover Heading</p>
+                  <p className="px-2 py-2">
+                    And here's some amazing content. It's very engaging. Right?
+                  </p>
+                
+                </HUIPopover.Panel>
+              </HUIPopover>
+        </div>
+      </div>
     </div>
   );
 }

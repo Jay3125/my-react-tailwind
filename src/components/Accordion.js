@@ -1,10 +1,10 @@
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/20/solid'
-
+// import { Disclosure } from '@headlessui/react'
+// import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import PopoverExample from './pages/Popovers'
 export default function Accordion() {
   return (
-    <div className="w-full px-4 pt-16">
-      <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
+    <div className="w-2/4 px-4 pt-16 bg-slate-100 h-100 flex justify-center align-middle p-96">
+      {/* <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
         <Disclosure>
           {({ open }) => (
             <>
@@ -40,7 +40,8 @@ export default function Accordion() {
             </>
           )}
         </Disclosure>
-      </div>
+      </div> */}
+      <PopoverExample placement = 'bottom'/>
     </div>
   )
 }
