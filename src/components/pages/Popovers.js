@@ -3,7 +3,6 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { createPopper } from '@popperjs/core'
 import { Fragment, useState } from 'react'
 import { usePopper } from 'react-popper'
-import { Link } from 'react-router-dom'
 
 
 
@@ -32,11 +31,7 @@ const  PopoverExample = (props) => {
                 group inline-flex items-center rounded-md bg-orange-700 px-3 py-2 text-base font-medium text-white hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
             >
               <span>{props.label}</span>
-              <ChevronDownIcon
-                className={`${open ? '' : 'text-opacity-70'}
-                  ml-2 h-5 w-5 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
-                aria-hidden="true"
-              />
+             
             </Popover.Button>
       
           </div>

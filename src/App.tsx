@@ -72,10 +72,13 @@ function App() {
       </h1>
 
       <div className="flex justify-center">
-        <Accordion />
-        <div className="top-16 w-full max-w-sm px-4">
+        {/* <Accordion /> */}
         
-        </div>
+        <HUIPopover BgColor='bg-sky-500' children='Click For Top' content="Top" title="Top" placement = 'top'/>
+      <HUIPopover BgColor='bg-sky-500' children='Click For Bottom' placement='bottom' title='Bottom' content='Bottom' />
+      <HUIPopover BgColor='bg-sky-500' children='Click For Left' placement='left' title='Left' content='Left' />
+      <HUIPopover BgColor='bg-sky-500' children='Click For Right' placement='right' title='Right' content='Right' />
+        
       </div>
     </div>
   );

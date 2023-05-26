@@ -1,5 +1,6 @@
 // import { Disclosure } from '@headlessui/react'
 // import { ChevronUpIcon } from '@heroicons/react/20/solid'
+// import { HUIPopover } from './pages'
 import { HUIPopover } from './pages'
 import PopoverExample from './pages/Popovers'
 export default function Accordion() {
@@ -42,10 +43,14 @@ export default function Accordion() {
           )}
         </Disclosure>
       </div> */}
-      <PopoverExample label="Top" title="Top" placement = 'top'/>
-      <HUIPopover title='Bottom'/>
+      {/* <PopoverExample label="Top" title="Top" placement = 'top'/>
       <PopoverExample placement='bottom' title='Bottom' label='Bottom' />
       <PopoverExample placement='left' title='Left' label='Left' />
+      <PopoverExample placement='right' title='Right' label='Right' /> */}
+    <HUIPopover BgColor='bg-sky-500' children='Click For Top' content="Top" title="Top" placement = 'top'/>
+      <HUIPopover BgColor='bg-sky-500' children='Click For Bottom' placement='bottom' title='Bottom' content='Bottom' />
+      <HUIPopover BgColor='bg-sky-500' children='Click For Left' placement='left' title='Left' content='Left' />
+      <HUIPopover BgColor='bg-sky-500' children='Click For Right' placement='right' title='Right' content='Right' />
     </div>
   )
 }
