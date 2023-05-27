@@ -1,12 +1,12 @@
 import { Disclosure } from "@headlessui/react";
-import  { ReactNode } from "react";
+import { ReactNode } from "react";
 interface Props {
   children?: ReactNode;
   className?: string;
   id?: any;
   active?: string | number | undefined;
   onClick?: () => void;
-  isOpen?:boolean
+  isOpen?: boolean;
 }
 
 const Accordion = (props: Props) => (
@@ -16,19 +16,20 @@ const Accordion = (props: Props) => (
 );
 Accordion.Button = (props: Props) => (
   <Disclosure.Button
-    className={`"flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"`}
+    className={`" flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-medium  hover:bg-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-75"`}
   >
     {props.children}
   </Disclosure.Button>
 );
 
-
 Accordion.Panel = (props: Props) => (
   <Disclosure.Panel
-    className={`${props.isOpen ? props.id === props.active : ''} px-4 pt-4 pb-2 text-sm text-gray-500`}
+    className={`${
+      props.isOpen ? props.id === props.active : ""
+    } px-4 pt-4 pb-2 text-sm text-gray-500`}
   >
     {props.children}
   </Disclosure.Panel>
 );
 
-export default Accordion
+export default Accordion;
